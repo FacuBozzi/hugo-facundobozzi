@@ -10,8 +10,6 @@ title = "facundo bozzi."
 <!-- > "as long as i'm learning something, i figure i'm ok - it's a decent day."
 > — hunter s. thompson -->
 
-building [scalepilot](https://scalepilot.io).
-
 i care a lot about building products that are beautiful and performant. you can reach out to me via [telegram](https://t.me/facundobozzi).
 
 i'm also on [twitter](https://x.com/facundobozzi) and [medium](https://medium.com/@facubozzi). if you're a cracked swe/founder, let's connect.
