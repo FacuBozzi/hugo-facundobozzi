@@ -6,15 +6,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="shortcut icon" href="http://localhost:1313/images/favicon.png" />
-<title>404</title>
-<meta name="title" content="404 Page not found" />
+<title>books | building 🌄</title>
+<meta name="title" content="books" />
 <meta name="description" content="Description" />
 <meta name="keywords" content="" />
 
 
-<meta property="og:url" content="http://localhost:1313/404.html">
+<meta property="og:url" content="http://localhost:1313/books/">
   <meta property="og:site_name" content="building 🌄">
-  <meta property="og:title" content="404 Page not found">
+  <meta property="og:title" content="books">
   <meta property="og:description" content="Description">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
@@ -25,17 +25,18 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="http://localhost:1313/images/share.png">
-  <meta name="twitter:title" content="404 Page not found">
+  <meta name="twitter:title" content="books">
   <meta name="twitter:description" content="Description">
 
 
 
 
-  <meta itemprop="name" content="404 Page not found">
+  <meta itemprop="name" content="books">
   <meta itemprop="description" content="Description">
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
+  <link rel="alternate" type="application/rss+xml" href="http://localhost:1313/books/index.xml" title="building 🌄" />
   <style>
   body {
     font-family: Verdana, sans-serif;
@@ -222,8 +223,93 @@
 </nav>
 </header>
   <main>
-<h1>404</h1>
-<h2>ʕノ•ᴥ•ʔノ ︵ ┻━┻</h2>
+<content>
+  <h1>books</h1>
+
+  <p>these are the books that I consider essentials. must-reads.</p>
+
+  <div id="books-loading">loading...</div>
+  <div id="books-error" style="display:none"></div>
+  <ul id="books-list" class="books-list" style="display:none"></ul>
+
+  <style>
+    .books-list {
+      list-style: none;
+      padding: 0;
+    }
+    .books-list li {
+      margin-bottom: 0.5em;
+    }
+    .books-list .book-author {
+      opacity: 0.6;
+    }
+  </style>
+
+  <script>
+    (function () {
+      var supabaseUrl = "https://upkfrqwsuuuacletsyoa.supabase.co";
+      var supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwa2ZycXdzdXV1YWNsZXRzeW9hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE2MTM5MzQsImV4cCI6MjA4NzE4OTkzNH0.N9i-gv5lJlNnsZH9aJd0TwxyAgf5lNQT1I2MLSSAVHQ";
+
+      var loadingEl = document.getElementById("books-loading");
+      var errorEl = document.getElementById("books-error");
+      var listEl = document.getElementById("books-list");
+
+      function showError(msg) {
+        loadingEl.style.display = "none";
+        errorEl.style.display = "block";
+        errorEl.textContent = msg;
+      }
+
+      function showBooks(books) {
+        loadingEl.style.display = "none";
+        if (books.length === 0) {
+          errorEl.style.display = "block";
+          errorEl.textContent = "no books yet.";
+          return;
+        }
+        listEl.style.display = "block";
+        books.forEach(function (book) {
+          var li = document.createElement("li");
+          var title = document.createElement("span");
+          title.textContent = book.title;
+          var author = document.createElement("span");
+          author.className = "book-author";
+          author.textContent = " — " + book.author;
+          li.appendChild(title);
+          li.appendChild(author);
+          listEl.appendChild(li);
+        });
+      }
+
+      var controller = new AbortController();
+      var timeoutId = setTimeout(function () { controller.abort(); }, 10000);
+
+      fetch(supabaseUrl + "/rest/v1/book_recommendations?select=*&order=id.asc", {
+        headers: {
+          "apikey": supabaseKey,
+          "Authorization": "Bearer " + supabaseKey
+        },
+        signal: controller.signal
+      })
+        .then(function (res) {
+          clearTimeout(timeoutId);
+          if (!res.ok) {
+            console.error("Supabase error:", res.status, res.statusText);
+            throw new Error("HTTP " + res.status);
+          }
+          return res.json();
+        })
+        .then(function (data) {
+          showBooks(data);
+        })
+        .catch(function (err) {
+          clearTimeout(timeoutId);
+          console.error("Failed to load books:", err);
+          showError("couldn't load books — please try again later.");
+        });
+    })();
+  </script>
+</content>
 
   </main>
   <footer>

@@ -16,7 +16,7 @@ i'm also on [twitter](https://x.com/facundobozzi) and [medium](https://medium.co
 
 [book recommendations.](/books)
 
-typescript | context engineering | ml | ai | pgsql | full-stack | python.
+typescript | context engineering | ml | ai | backend | full-stack | python.
 
 - [telegram](https://t.me/facundobozzi)
 - [github](https://github.com/facubozzi)
