@@ -4,9 +4,17 @@
 
   <p>these are the books that I consider essentials. must-reads.</p>
 
-  <div id="books-loading">loading...</div>
-  <div id="books-error" style="display:none"></div>
-  <ul id="books-list" class="books-list" style="display:none"></ul>
+  {{ if site.Data.books }}
+    <ul class="books-list">
+      {{ range site.Data.books }}
+        <li>
+          <span>{{ .title }}</span><span class="book-author"> — {{ .author }}</span>
+        </li>
+      {{ end }}
+    </ul>
+  {{ else }}
+    <p>no books yet.</p>
+  {{ end }}
 
   <style>
     .books-list {
@@ -20,70 +28,5 @@
       opacity: 0.6;
     }
   </style>
-
-  <script>
-    (function () {
-      var supabaseUrl = {{ os.Getenv "HUGO_SUPABASE_URL" }};
-      var supabaseKey = {{ os.Getenv "HUGO_SUPABASE_ANON_KEY" }};
-
-      var loadingEl = document.getElementById("books-loading");
-      var errorEl = document.getElementById("books-error");
-      var listEl = document.getElementById("books-list");
-
-      function showError(msg) {
-        loadingEl.style.display = "none";
-        errorEl.style.display = "block";
-        errorEl.textContent = msg;
-      }
-
-      function showBooks(books) {
-        loadingEl.style.display = "none";
-        if (books.length === 0) {
-          errorEl.style.display = "block";
-          errorEl.textContent = "no books yet.";
-          return;
-        }
-        listEl.style.display = "block";
-        books.forEach(function (book) {
-          var li = document.createElement("li");
-          var title = document.createElement("span");
-          title.textContent = book.title;
-          var author = document.createElement("span");
-          author.className = "book-author";
-          author.textContent = " — " + book.author;
-          li.appendChild(title);
-          li.appendChild(author);
-          listEl.appendChild(li);
-        });
-      }
-
-      var controller = new AbortController();
-      var timeoutId = setTimeout(function () { controller.abort(); }, 10000);
-
-      fetch(supabaseUrl + "/rest/v1/book_recommendations?select=*&order=id.asc", {
-        headers: {
-          "apikey": supabaseKey,
-          "Authorization": "Bearer " + supabaseKey
-        },
-        signal: controller.signal
-      })
-        .then(function (res) {
-          clearTimeout(timeoutId);
-          if (!res.ok) {
-            console.error("Supabase error:", res.status, res.statusText);
-            throw new Error("HTTP " + res.status);
-          }
-          return res.json();
-        })
-        .then(function (data) {
-          showBooks(data);
-        })
-        .catch(function (err) {
-          clearTimeout(timeoutId);
-          console.error("Failed to load books:", err);
-          showError("couldn't load books — please try again later.");
-        });
-    })();
-  </script>
 </content>
 {{ end }}
