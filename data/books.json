@@ -1,4 +1,5 @@
 [
+  { "title": "The Art of Doing Science and Engineering", "author": "Richard Hamming" },
   { "title": "Republic", "author": "Plato" },
   { "title": "El coronel no tiene quien le escriba", "author": "Gabriel García Márquez" },
   { "title": "Thinking in Systems", "author": "Donella H. Meadows" },
@@ -24,6 +25,8 @@
   { "title": "Enchiridion", "author": "Epictetus" },
   { "title": "Ham on Rye", "author": "Charles Bukowski" },
   { "title": "Scar Tissue", "author": "Anthony Kiedis" },
-  { "title": "One Hundred Years of Solitude", "author": "Gabriel García Márquez" },
-  { "title": "The Great Gatsby", "author": "F. Scott Fitzgerald" }
+  { "title": "Cien años de soledad", "author": "Gabriel García Márquez" },
+  { "title": "The Great Gatsby", "author": "F. Scott Fitzgerald" },
+  { "title": "Game Theory: A Very Short Introduction", "author": "Ken Binmore" },
+  { "title": "The Innovator's Dilemma", "author": "Clayton M. Christensen" }
 ]
