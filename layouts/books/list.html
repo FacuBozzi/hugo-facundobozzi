@@ -5,13 +5,20 @@
   <p>these are the books that I consider essentials. must-reads.</p>
 
   {{ if site.Data.books }}
-    <ul class="books-list">
-      {{ range site.Data.books }}
-        <li>
-          <span>{{ .title }}</span><span class="book-author"> — {{ .author }}</span>
-        </li>
+    {{ $categories := slice "novels" "short stories & poetry" "philosophy & psychology" "business & startups" "engineering & science" "finance & markets" "history, politics & memoir" }}
+    {{ range $categories }}
+      {{ $books := where site.Data.books "category" . }}
+      {{ if $books }}
+        <h2 class="books-category">{{ . }}</h2>
+        <ul class="books-list">
+          {{ range $books }}
+            <li>
+              <span>{{ .title }}</span><span class="book-author"> — {{ .author }}</span>
+            </li>
+          {{ end }}
+        </ul>
       {{ end }}
-    </ul>
+    {{ end }}
   {{ else }}
     <p>no books yet.</p>
   {{ end }}
@@ -23,6 +30,9 @@
     }
     .books-list li {
       margin-bottom: 0.5em;
+    }
+    .books-category {
+      margin-top: 1.5em;
     }
     .books-list .book-author {
       opacity: 0.6;
