@@ -20,6 +20,7 @@
   { "title": "El oro de los tigres", "author": "Jorge Luis Borges", "category": "short stories & poetry" },
   { "title": "Final del juego", "author": "Julio Cortázar", "category": "short stories & poetry" },
   { "title": "Bestiario", "author": "Julio Cortázar", "category": "short stories & poetry" },
+  { "title": "How Much Land Does a Man Need?", "author": "Leo Tolstoy", "category": "short stories & poetry" },
   { "title": "Republic", "author": "Plato", "category": "philosophy & psychology" },
   { "title": "The Straussian Moment", "author": "Peter Thiel", "category": "philosophy & psychology" },
   { "title": "Violence and the Sacred", "author": "René Girard", "category": "philosophy & psychology" },
@@ -41,5 +42,6 @@
   { "title": "Principles for Dealing with the Changing World Order: Why Nations Succeed and Fail", "author": "Ray Dalio", "category": "finance & markets" },
   { "title": "From Beirut to Jerusalem", "author": "Thomas L. Friedman", "category": "history, politics & memoir" },
   { "title": "Fear and Loathing: On the Campaign Trail '72", "author": "Hunter S. Thompson", "category": "history, politics & memoir" },
-  { "title": "Scar Tissue", "author": "Anthony Kiedis", "category": "history, politics & memoir" }
+  { "title": "Scar Tissue", "author": "Anthony Kiedis", "category": "history, politics & memoir" },
+  { "title": "The Fourth State of Matter (essay)", "author": "Jo Ann Beard", "category": "history, politics & memoir" }
 ]
