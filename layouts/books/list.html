@@ -5,7 +5,7 @@
   <p>these are the books that I consider essentials. must-reads.</p>
 
   {{ if site.Data.books }}
-    {{ $categories := slice "novels" "short stories & poetry" "philosophy & psychology" "business & startups" "engineering & science" "finance & markets" "history, politics & memoir" }}
+    {{ $categories := slice "engineering & science" "novels" "finance & markets" "short stories & poetry" "philosophy & psychology" "business & startups" "history, politics & memoir" }}
     {{ range $categories }}
       {{ $books := where site.Data.books "category" . }}
       {{ if $books }}
